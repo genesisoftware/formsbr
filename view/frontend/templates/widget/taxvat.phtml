@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Widget\Taxvat $block */
+
+?>
+<?php $allowCpfCnpj  = $this->helper('Genesisoft\FormsBr\Helper\Address')->getAllowCpfCnpj() ?>
+<?php $allowCpfOnly  = $allowCpfCnpj == Genesisoft\FormsBr\Model\Config\Source\CpfCnpj::ALLOW_CPF_ONLY ?>
+<?php $allowCnpjOnly = $allowCpfCnpj == Genesisoft\FormsBr\Model\Config\Source\CpfCnpj::ALLOW_CNPJ_ONLY ?>
+<?php if ($allowCpfOnly) : $validation = 'validate-cpf'; elseif ($allowCnpjOnly): $validation = 'validate-cnpj'; else: $validation = 'validate-vat-id'; endif; ?>
+<?php if ($allowCnpjOnly) :?>
+<div class="field company_name">
+    <label for="companyName" class="label"><span><?php /* @escapeNotVerified */
+            echo __('Company Legal Name') ?></span></label>
+    <div class="control">
+        <input type="text" name="company_name" id="company_name" title="<?php /* @escapeNotVerified */ echo __('Company Legal Name') ?>" class="input-text" data-validate="{required:false}"
+               value="<?= $block->escapeHtmlAttr($block->getcompanyName()) ?>"
+        >
+    </div>
+</div>
+<?php endif ?>
+<div class="field taxvat<?php if ($block->isRequired()) echo ' required'; ?>">
+    <label class="label" for="<?= $block->escapeHtmlAttr($block->getFieldId("VAT Number")) ?>">
+        <span><?php /* @noEscape */ if ($allowCpfOnly) : echo 'CPF';elseif ($allowCnpjOnly): echo 'CNPJ';else: echo $block->escapeHtml(__("VAT Number")); endif; ?></span></label>
+    <div class="control">
+        <input type="text" id="<?= $block->escapeHtmlAttr($block->getFieldId('taxvat')) ?>" name="<?= $block->escapeHtmlAttr($block->getFieldName('taxvat')) ?>" value="<?= $block->escapeHtmlAttr($block->getTaxvat()) ?>" title="<?= $block->escapeHtmlAttr($block->getStoreLabel('taxvat')) ?>" class="input-text <?= $block->escapeHtmlAttr($this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('taxvat')) ?>"
+            <?php if ($block->isRequired()) { echo "data-validate=\"{required:true, '{$validation}':true}\""; } else { echo "data-validate=\"{{$validation}:true}\""; } ?>
+               data-bind="afterRender:<?php if ($allowCpfOnly) : echo 'ko.cpfMask'; elseif($allowCnpjOnly) : echo 'ko.cnpjMask'; else : echo 'ko.vatIdMask'; endif ?>">
+    </div>
+</div>

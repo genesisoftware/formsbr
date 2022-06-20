@@ -1,0 +1,16 @@
+{
+    "name": "genesisoft/formsbr",
+    "description": "Módulo para organização e personalização de formulários para o Brasil",
+    "type": "magento2-module",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {"genesisoft/base": "^1.0"},
+    "autoload": {
+        "psr-4": {
+            "Genesisoft\\FormsBr\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

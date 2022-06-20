@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="customer">
+            <tab>customer</tab>
+            <group id="create_account">
+                <field id="allowcpfcnpj" translate="label" type="select" sortOrder="59"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow Registration Of (Brazil Only)</label>
+                    <source_model>Genesisoft\FormsBr\Model\Config\Source\CpfCnpj</source_model>
+                </field>
+            </group>
+        </section>
+<!--   Nova configuração de formato de Data -->
+        <tab id="generaltab" translate="label" sortOrder="100">
+            <label>General</label>
+        </tab>
+        <section id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>General</label>
+            <tab>general</tab>
+            <resource>Magento_Config::config_general</resource>
+            <group id="locale" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Locale Options</label>
+                <field id="date_format" translate="label" type="select" sortOrder="99" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Date Format</label>
+                    <comment>Formato de data exibido nos Grids da administração.</comment>
+                    <source_model>Genesisoft\FormsBr\Model\Config\Source\Locale\Dateformat</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

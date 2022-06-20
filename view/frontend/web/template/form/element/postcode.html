@@ -1,0 +1,14 @@
+<input class="input-text" type="text" data-bind="
+    afterRender: ko.postcodeJs,
+    value: value,
+    valueUpdate: 'change',
+    hasFocus: focused,
+    attr: {
+        name: inputName,
+        placeholder: placeholder,
+        'aria-describedby': getDescriptionId(),
+        'aria-required': required,
+        'aria-invalid': error() ? true : 'false',
+        id: uid,
+        disabled: disabled
+    }" name="postcode" aria-required="true" aria-invalid="true">

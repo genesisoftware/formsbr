@@ -1,0 +1,24 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Block\Checkout\AttributeMerger">
+        <plugin name="shippingAddress" type="Genesisoft\FormsBr\Plugin\Checkout\Block\Checkout\AttributeMerger\Plugin"/>
+    </type>
+    <type name="Magento\Customer\Block\Widget\Name">
+        <plugin name="name_override_template" type="Genesisoft\FormsBr\Plugin\Customer\Block\Widget\Name\Plugin" />
+    </type>
+    <type name="Magento\Customer\Block\Widget\Taxvat">
+        <plugin name="taxvat_override_template" type="Genesisoft\FormsBr\Plugin\Customer\Block\Widget\Taxvat\Plugin" />
+    </type>
+    <type name="Magento\Customer\Block\Widget\Telephone">
+        <plugin name="telephone_override_template" type="Genesisoft\FormsBr\Plugin\Customer\Block\Widget\Telephone\Plugin" />
+    </type>
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="billingaddress" type="Genesisoft\FormsBr\Plugin\Model\Plugin\Checkout\LayoutProcessor\Plugin"/>
+    </type>
+    <preference for="Magento\Customer\Block\Widget\Dob" type="Genesisoft\FormsBr\Block\Widget\Dob" />
+    <!--    Preference relacionado a nova configuração de formato de data  -->
+    <preference for="Magento\Ui\Component\Listing\Columns\Date" type="Genesisoft\FormsBr\Preference\Magento\Ui\Component\Listing\Columns\Date"/>
+    <!--    Adicionando coluna e filtro "Razão Social" na relação de pedidos na admin.-->
+        <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+            <plugin name="grid_order_company_name" type="Genesisoft\FormsBr\Plugin\JoinCompanyName" sortOrder="5" />
+        </type>
+</config>
